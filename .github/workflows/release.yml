@@ -43,7 +43,7 @@ jobs:
       - name: Check for changes
         id: check_changes
         run: |
-          git diff --exit-code || echo "changes"
+          git diff --exit-code || echo "changes" >> "$GITHUB_OUTPUT"
   
       - name: Publish AUR
         if: steps.check_changes.outputs.changes != ''
