@@ -1,0 +1,52 @@
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '00 * * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install deps and link
+        run: |
+          npm install
+
+      - name: Update
+        run: |
+          node index.js
+
+      - name: Commit changes
+        run: |
+          git config --global user.name "${{ github.repository_owner }}"
+          git config --global user.email "${{ github.repository_owner }}@users.noreply.github.com"
+          git add .
+          git commit -m "Auto update" || echo "No changes to commit"
+          git push
+
+      - name: Publish AUR
+        uses: KSXGitHub/github-actions-deploy-aur@v2.7.1
+        with:
+          pkgname: moonbit-bin
+          pkgbuild: ./PKGBUILD
+          commit_username: ${{ github.repository_owner }}
+          commit_email: ${{ github.repository_owner }}@users.noreply.github.com
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          commit_message: update
+          allow_empty_commits: false

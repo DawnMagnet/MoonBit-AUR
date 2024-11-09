@@ -1,0 +1,26 @@
+{
+  "name": "moonbit-aur",
+  "version": "1.0.0",
+  "description": "MoonBit AUR Package for Arch Linux.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lampese/MoonBit-AUR.git"
+  },
+  "keywords": [
+    "moonbit"
+  ],
+  "author": "Lampese",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lampese/MoonBit-AUR/issues"
+  },
+  "homepage": "https://github.com/Lampese/MoonBit-AUR#readme",
+  "dependencies": {
+    "axios": "^1.7.7"
+  }
+}
