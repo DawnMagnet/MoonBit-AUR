@@ -43,10 +43,10 @@ jobs:
       - name: Check for changes
         id: check_changes
         run: |
-          git diff --exit-code || echo "changes" >> "$GITHUB_OUTPUT"
+          git diff --exit-code || echo "changes=true" >> "$GITHUB_OUTPUT"
   
       - name: Publish AUR
-        if: steps.check_changes.outputs.changes != ''
+        if: steps.check_changes.outputs.changes == 'true'
         uses: KSXGitHub/github-actions-deploy-aur@v2.7.1
         with:
           pkgname: moonbit-bin
