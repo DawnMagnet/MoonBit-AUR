@@ -32,6 +32,11 @@ jobs:
         run: |
           node index.js
 
+      - name: Check for changes
+        id: check_changes
+        run: |
+          git diff --exit-code || echo "changes=true" >> "$GITHUB_OUTPUT"
+
       - name: Commit changes
         run: |
           git config --global user.name "${{ github.repository_owner }}"
@@ -39,11 +44,6 @@ jobs:
           git add .
           git commit -m "Auto update" || echo "No changes to commit"
           git push
-
-      - name: Check for changes
-        id: check_changes
-        run: |
-          git diff --exit-code || echo "changes=true" >> "$GITHUB_OUTPUT"
   
       - name: Publish AUR
         if: steps.check_changes.outputs.changes == 'true'
