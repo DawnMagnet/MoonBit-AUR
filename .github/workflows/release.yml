@@ -31,7 +31,6 @@ jobs:
       - name: Update
         run: |
           node index.js
-          makepkg --printsrcinfo > .SRCINFO
 
       - name: Commit changes
         run: |
