@@ -41,7 +41,13 @@ jobs:
           git commit -m "Auto update" || echo "No changes to commit"
           git push
 
+      - name: Check for changes
+        id: check_changes
+        run: |
+          git diff --exit-code || echo "changes"
+  
       - name: Publish AUR
+        if: steps.check_changes.outputs.changes != ''
         uses: KSXGitHub/github-actions-deploy-aur@v2.7.1
         with:
           pkgname: moonbit-bin
