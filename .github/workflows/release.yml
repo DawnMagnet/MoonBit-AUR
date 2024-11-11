@@ -56,4 +56,5 @@ jobs:
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
           ssh_keyscan_types: rsa,ecdsa,ed25519
           commit_message: update
+          force_push: 'true'
           allow_empty_commits: false
