@@ -136,33 +136,10 @@ _origin="https://cli.moonbitlang.com"
 source=("https://cli.moonbitlang.cn/binaries/latest/moonbit-linux-x86_64.tar.gz"
         "https://cli.moonbitlang.cn/cores/core-latest.tar.gz"
         "moon.sh")
+sha512sums=("SKIP")
 
 ` + readFileSync("PKG");
 
 writeFileSync("VERSION", version);
 
 writeFileSync("PKGBUILD", PKGBUILD);
-
-writeFileSync(
-  ".SRCINFO",
-  `pkgbase = moonbit-bin
-	pkgdesc = Intelligent developer platform for Cloud and Edge using WASM
-	pkgver = ${version}
-	pkgrel = 1
-	url = https://www.moonbitlang.com/
-	arch = x86_64
-	license = unknown
-	depends = tar
-	depends = glibc
-	depends = gcc-libs
-	depends = git
-	provides = moonbit
-	conflicts = moonbit
-	options = !debug
-	source = https://cli.moonbitlang.cn/binaries/latest/moonbit-linux-x86_64.tar.gz
-	source = https://cli.moonbitlang.cn/cores/core-latest.tar.gz
-	source = moon.sh
-
-pkgname = moonbit-bin
-`
-);
