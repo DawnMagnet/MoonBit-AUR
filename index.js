@@ -114,11 +114,9 @@ const version = await getVSCodeExtensionVersion();
 
 const version_current = readFileSync("VERSION");
 
-// if (version == version_current) {
-//     process.exit(0);
-// }
-
-const SHA = processSHA(await getSHA());
+if (version == version_current) {
+    process.exit(0);
+}
 
 const PKGBUILD =
   `pkgname=moonbit-bin
@@ -136,7 +134,9 @@ _origin="https://cli.moonbitlang.com"
 source=("https://cli.moonbitlang.cn/binaries/latest/moonbit-linux-x86_64.tar.gz"
         "https://cli.moonbitlang.cn/cores/core-latest.tar.gz"
         "moon.sh")
-sha512sums=("SKIP")
+sha512sums=("SKIP"
+            "SKIP"
+            "SKIP")
 
 ` + readFileSync("PKG");
 
