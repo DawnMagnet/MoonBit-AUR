@@ -1,5 +1,5 @@
 pkgname=moonbit-bin
-pkgver=0.1.2025082203
+pkgver=0.1.2025082601
 pkgrel=1
 pkgdesc="Intelligent developer platform for Cloud and Edge using WASM"
 arch=('x86_64')
