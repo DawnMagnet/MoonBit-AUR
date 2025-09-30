@@ -15,6 +15,9 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v4
 
+      - name: Update PKGBUILD
+        run: chmod +x get_info.sh && ./get_info.sh
+
       - name: Publish AUR
         uses: KSXGitHub/github-actions-deploy-aur@v2.7.1
         with:
