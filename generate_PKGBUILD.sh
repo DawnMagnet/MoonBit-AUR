@@ -20,13 +20,19 @@ curl -L https://cli.moonbitlang.cn/cores/core-latest.tar.gz -o "$tmpdir/core-lat
 sha1=$(sha256sum "$tmpdir/moonbit-linux-x86_64.tar.gz" | cut -d' ' -f1)
 sha2=$(sha256sum "$tmpdir/core-latest.tar.gz" | cut -d' ' -f1)
 
-# Output version and sha256sums
-echo "$version"
-echo "$sha1 $sha2"
+# Generate PKGBUILD from template using safe delimiter |
+if [ ! -f PKGBUILD.template ]; then
+	echo "PKGBUILD.template not found in repository. Aborting."
+	rm -rf "$tmpdir"
+	exit 1
+fi
 
-# Replace placeholders in PKGBUILD
-sed -i "s/__VERSION__/$version/g" PKGBUILD
-sed -i "s/__SHA256SUM__/$sha1 $sha2/g" PKGBUILD
+sed "s|__VERSION__|$version|g; s|__SHA1__|$sha1|g; s|__SHA2__|$sha2|g" PKGBUILD.template > PKGBUILD
 
-# Clean up the temporary directory
+
+echo "Generated PKGBUILD with version: $version revision: 1"
+echo "sha256 of moonbit-linux-x86_64.tar.gz: $sha1"
+echo "sha256 of core-latest.tar.gz: $sha2"
+
+# Clean up
 rm -rf "$tmpdir"
