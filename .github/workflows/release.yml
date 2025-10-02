@@ -26,7 +26,8 @@ jobs:
         with:
           pkgname: moonbit-bin
           pkgbuild: ./PKGBUILD
-          assets: ./moon.sh
+          assets: moon.sh
+          updpkgsums: true
           commit_username: ${{ github.repository_owner }}
           commit_email: ${{ github.repository_owner }}@users.noreply.github.com
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
