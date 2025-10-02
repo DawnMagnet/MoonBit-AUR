@@ -22,10 +22,11 @@ jobs:
           ./generate_PKGBUILD.sh
 
       - name: Publish AUR
-        uses: KSXGitHub/github-actions-deploy-aur@v2.7.1
+        uses: KSXGitHub/github-actions-deploy-aur@v3
         with:
           pkgname: moonbit-bin
           pkgbuild: ./PKGBUILD
+          assets: ./moon.sh
           commit_username: ${{ github.repository_owner }}
           commit_email: ${{ github.repository_owner }}@users.noreply.github.com
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
