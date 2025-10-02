@@ -2,6 +2,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
   schedule:
     - cron: "00 * * * *"
 
@@ -16,7 +17,9 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Update PKGBUILD
-        run: chmod +x get_info.sh && ./get_info.sh
+        run: |
+          chmod +x generate_PKGBUILD.sh || true
+          ./generate_PKGBUILD.sh
 
       - name: Publish AUR
         uses: KSXGitHub/github-actions-deploy-aur@v2.7.1
