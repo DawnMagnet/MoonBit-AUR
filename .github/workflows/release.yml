@@ -22,7 +22,7 @@ jobs:
           ./generate_PKGBUILD.sh
 
       - name: Publish AUR
-        uses: KSXGitHub/github-actions-deploy-aur@v3
+        uses: KSXGitHub/github-actions-deploy-aur@v2
         with:
           pkgname: moonbit-bin
           pkgbuild: ./PKGBUILD
