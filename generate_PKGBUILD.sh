@@ -21,7 +21,7 @@ if [ ! -f PKGBUILD.template ]; then
 fi
 
 # Generate PKGBUILD from template using safe delimiter |
-# Only substitute the version placeholder; SHA placeholders were removed per request
+# Only substitute the version placeholder
 sed "s|__VERSION__|$version|g" PKGBUILD.template > PKGBUILD
 
 
